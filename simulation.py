@@ -45,11 +45,11 @@ def assign_clas(cum_pr_img):
 #             .And(cum_pr_img.select('Ran_uniform').lte(ee.Image.constant(1))))
     clas_img = cum_pr_img.select('Ran_uniform').lte(cum_pr_img.select('for')).multiply(1)\
         .add(cum_pr_img.select('Ran_uniform').gt(cum_pr_img.select('for'))\
-             .And(cum_pr_img.select('Ran_uniform').lte(cum_pr_img.select('plant'))).multiply(2))\
+             .And(cum_pr_img.select('Ran_uniform').lte(cum_pr_img.select('plant'))).multiply(3))\
         .add(cum_pr_img.select('Ran_uniform').gt(cum_pr_img.select('plant'))\
-             .And(cum_pr_img.select('Ran_uniform').lte(cum_pr_img.select('shrub'))).multiply(3))\
+             .And(cum_pr_img.select('Ran_uniform').lte(cum_pr_img.select('shrub'))).multiply(5))\
         .add(cum_pr_img.select('Ran_uniform').gt(cum_pr_img.select('shrub'))\
-             .And(cum_pr_img.select('Ran_uniform').lte(ee.Image.constant(1))).multiply(4))
+             .And(cum_pr_img.select('Ran_uniform').lte(ee.Image.constant(1))).multiply(19))
     clas_img = clas_img.select(['Ran_uniform'], ['clas'])
 #    temp_bands = ['Ran_uniform']
 #    temp_bands.extend(['Ran_uniform_' + str(i) for i in range(1,4)])
@@ -226,7 +226,10 @@ def dict_to_input_ic(asset_dict, n):
 
 class sim_mapper:
     def __init__(self, coefs_csv, coefs_se_csv):
-        self.coefs_df = draw_random_coefs(coefs_csv, coefs_se_csv)
+        self.coefs_csv = coefs_csv
+        self.coefs_se_csv = coefs_se_csv
     def __call__(self, input_img):
-        pr_img = simulate_probs(self.coefs_df, input_img)
+        coefs_df = draw_random_coefs(self.coefs_csv, self.coefs_se_csv)
+        pr_img = simulate_probs(coefs_df, input_img)
         return pr_img
+    

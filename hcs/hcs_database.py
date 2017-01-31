@@ -38,9 +38,12 @@ study_areas = {'app_muba': {"type":"Polygon","coordinates":[[[102.9583740234375,
                'app_riau': {"type":"Polygon","coordinates":[[[102.64526400715113,-0.6185033744297275],
                                                              [103.46923861652613,-0.036239994136064956],
                                                              [101.85424838215113,1.6773875302689043],
-                                                             [101.21704135090113,1.1611902706982198]]],"evenOdd":'true'}
+                                                             [101.21704135090113,1.1611902706982198]]],"evenOdd":'true'}}
 
-
-
-
-}
+gee_dir = 'users/rheilmayr/indonesia/'
+app_rasters = {'app_kalbar': gee_dir + 'Kalbar_DTK_Stratification',
+               'app_jambi': gee_dir + 'Jambi_WKS_Stratification',
+               'app_kaltim': gee_dir + 'Kaltim_KHL_Stratification',
+               'app_muba': gee_dir + 'MUba_BPP2_Stratification',
+               'app_riau': gee_dir + 'Riau_MSK_SK_Stratification',
+               'app_oki': gee_dir + 'OKI_BMH_Stratification'}

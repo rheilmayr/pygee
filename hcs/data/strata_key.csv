@@ -1,0 +1,36 @@
+strata_code_data,strata_code_eng,description,project_code,code_simpl
+HK3,HDF,High density forest,1,1
+HK2,MDF,Medium density forest,2,1
+HK1,LDF,Low density forest,3,1
+BT,YRF,Young regenerating forest,4,2
+BM,YS,Young shrub,5,2
+LT,OL,Other lands,6,0
+HK,F,Ambiguous density forest,7,1
+Enc,E,Enclosure,8,0
+Gelam High,G,Gelam,9,0
+Gelam Low,G,Gelam,9,0
+Nipah,NP,Nipah palm,10,0
+Sawit,OP,Oil palm,11,0
+Degraded Secondary Forest,DF,Degraded forest,12,1
+Degraded Secondary Forest (swamp),DF,Degraded forest,12,1
+Heavily Degraded Scdry F (swamp),DF,Degraded forest,12,1
+Heavily Degraded Secondary Forest,DF,Degraded forest,12,1
+Low Density Forest,LDF,Low density forest,3,1
+Medium Density Forest,MDF,Medium density forest,2,1
+Medium Density Forest (Virgin),MDF,Medium density forest,2,1
+Mixed Coconut Plant,C,Coconut,13,0
+Mixed Rubber/ Logged Over Forest,R,Rubber,14,0
+Open Land,OL,Other lands,6,0
+Rain Tree Plantation,RT,Rain tree,15,0
+Water Body,W,Water,16,0
+Agri,AG,Agriculture,20,0
+GHN,G,Gelam,9,0
+GHS,G,Gelam,9,0
+GL,G,Gelam,9,0
+HTI,TP,Tree plantation,21,0
+N,NP,Nipah palm,10,0
+PRP,P,Perapat forest,17,0
+SH,SH,Smallholder agriculture,18,0
+SH Mix,SH,Smallholder agriculture mixed with shrub and forest,18,0
+TBK,AQ,Tambak (shrimp ponds),19,0
+WB,W,Water bodies,16,0

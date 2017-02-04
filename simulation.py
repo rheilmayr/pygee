@@ -43,6 +43,36 @@ def sim_flow(input_ic, coefs_csv, coefs_se_csv, n):
     cum_pr_ic = cum_pr_ic.map(mask_mapper)
     return pr_ic, cum_pr_ic, clas_ic
 
+def sim_flow_norand(input_ic, coefs_csv):
+    # Add parameters to images
+    draws_dict = {}
+    draw = load_coefs(coefs_csv, 'pool')
+    draw = draw.reset_index()
+    draw = pd.melt(draw, id_vars = 'index')
+    draw['coef_name'] = draw.apply(lambda row: 'c_' + row['index'] + '_' + str(row['variable']), axis = 1)
+    draw = draw.set_index('coef_name')
+    draw = draw.drop(['variable', 'index'], axis = 1)
+    draws_dict[0] = draw.to_dict()['value']
+    draws_dict = gee_tools.dict_to_eedict(draws_dict)
+    c2p_mapper = coefs_to_params_map(draws_dict)
+    input_ic = input_ic.map(c2p_mapper)
+    
+    # Generate random raster images
+    template = ee.Image(input_ic.first()).select('olu')
+    rand_imgs = gee_random.runiform_rasters(template, 1)
+    
+    # Simulate conversion probabilities
+    sim_probs_mapper = sim_probs_map(coefs_csv)
+    pr_ic = input_ic.map(sim_probs_mapper)
+    cum_pr_ic = pr_ic.map(gen_cum_img)
+    cum_pr_ic = cum_pr_ic.combine(rand_imgs.select('Ran_uniform'))
+    clas_ic = cum_pr_ic.map(assign_clas)
+    mask_mapper = gee_tools.mask_update_map(ee.Image(input_ic.first()).select('mask').eq(0))
+    clas_ic = clas_ic.map(mask_mapper)
+    pr_ic = pr_ic.map(mask_mapper)
+    cum_pr_ic = cum_pr_ic.map(mask_mapper)
+    return pr_ic, cum_pr_ic, clas_ic
+
 
 ###################################################
 # Load inputs and parameters
@@ -103,7 +133,8 @@ def draw_random_coefs(coefs_csv, coefs_se_csv, time_period = 'pool'):
     """
     coefs_df = load_coefs(coefs_csv, time_period)
     coefs_se_df = load_coefs(coefs_se_csv, time_period)
-    rand_coefs_df = pd.DataFrame(np.random.normal(loc = coefs_df.astype(float), scale = coefs_se_df.astype(float)))
+    rand_coefs_df = pd.DataFrame(np.random.normal(loc = coefs_df.astype(float), scale =
+                                                  coefs_se_df.astype(float)))
     rand_coefs_df = rand_coefs_df.astype(str)
     rand_coefs_df.index = coefs_df.index
     rand_coefs_df.columns = coefs_df.columns

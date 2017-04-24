@@ -46,4 +46,17 @@ app_rasters = {'app_kalbar': gee_dir + 'Kalbar_DTK_Stratification',
                'app_kaltim': gee_dir + 'Kaltim_KHL_Stratification',
                'app_muba': gee_dir + 'MUba_BPP2_Stratification',
                'app_riau': gee_dir + 'Riau_MSK_SK_Stratification',
-               'app_oki': gee_dir + 'OKI_BMH_Stratification'}
+               'app_oki': gee_dir + 'OKI_BMH_Stratification',
+               'app_all': gee_dir + 'app_all'}
+
+rasters = {'app_kalbar': gee_dir + 'Kalbar_DTK_Stratification',
+           'app_jambi': gee_dir + 'Jambi_WKS_Stratification',
+           'app_kaltim': gee_dir + 'Kaltim_KHL_Stratification',
+           'app_muba': gee_dir + 'MUba_BPP2_Stratification',
+           'app_riau': gee_dir + 'Riau_MSK_SK_Stratification',
+           'app_oki': gee_dir + 'OKI_BMH_Stratification',
+           'app_all': gee_dir + 'app_all',
+           'crgl_stal': gee_dir + 'crgl_stal',
+           'gar_pgm': gee_dir + 'gar_pgm',
+           'nbpol_ob': gee_dir + 'nbpol_ob',
+           'wlmr_calaro': gee_dir + 'wlmr_calaro'}
